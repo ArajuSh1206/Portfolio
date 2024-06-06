@@ -1,0 +1,67 @@
+/* General Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #FFF1F9;
+    color: #333;
+  }
+  
+  /* Container Styles */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Heading Styles */
+  h1 {
+    text-align: center;
+    color: #FF69B4;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  /* Input Styles */
+  input {
+    border: 2px solid #FF69B4;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  
+  /* Button Styles */
+  button {
+    background-color: #FF69B4;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #FF1493;
+  }
+  
+  /* Message Styles */
+  #messages {
+    margin-top: 20px;
+  }
+  
+  #messages h4 {
+    color: #FF69B4;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  #messages p {
+    background-color: #FFE4E1;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
