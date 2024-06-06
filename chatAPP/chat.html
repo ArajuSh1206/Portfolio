@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pink Chat App</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="chat.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Pink Chat App</h1>
+      <input type="text" class="form-control" placeholder="Enter your name" id="nameInput">
+      <input type="text" class="form-control" placeholder="Enter your message" id="messageInput">
+      <button id="send">Send</button>
+      <div id="messages"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("#send").click(function() {
+          const name = $("#nameInput").val();
+          const message = $("#messageInput").val();
+          if (name && message) {
+            addMessage({ name, message });
+            $("#messageInput").val(""); // Clear the message input
+          }
+        });
+
+        getMessages();
+      });
+
+      function addMessage(message) {
+        $("#messages").append(`
+          <div class="message">
+            <h4>${message.name}</h4>
+            <p>${message.message}</p>
+          </div>
+        `);
+      }
+
+      function getMessages() {
+        $.get("http://localhost:3000/messages", function(data) {
+          data.forEach(function(message) {
+            addMessage(message);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+    "name": "05_01",
+    "version": "1.0.0",
+    "description": "",
+    "main": "chatAppserver.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node chatAppserver.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "body-parser": "^1.20.2",
+      "bootstrap": "^5.2.0-beta1",
+      "express": "^4.15.5"
+    }
+  }
