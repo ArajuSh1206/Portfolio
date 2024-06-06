@@ -1,6 +1,3 @@
-// Participant.java
-import java.util.List;
-
 public abstract class Participant {
     protected Hand hand;
 
@@ -9,7 +6,7 @@ public abstract class Participant {
     }
 
     public void hit(Deck deck) {
-        hand.addCard(deck.dealCard());
+        hand.addCard(deck.draw());
     }
 
     public Hand getHand() {

@@ -1,4 +1,3 @@
-// Card.java
 public class Card {
     private String suit;
     private String rank;
@@ -8,14 +7,6 @@ public class Card {
         this.suit = suit;
         this.rank = rank;
         this.value = value;
-    }
-
-    public String getSuit() {
-        return suit;
-    }
-
-    public String getRank() {
-        return rank;
     }
 
     public int getValue() {
