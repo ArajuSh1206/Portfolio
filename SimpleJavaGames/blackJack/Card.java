@@ -1,12 +1,16 @@
 public class Card {
-    private String suit;
     private String rank;
+    private String suit;
     private int value;
 
-    public Card(String suit, String rank, int value) {
-        this.suit = suit;
+    public Card(String rank, String suit, int value) {
         this.rank = rank;
+        this.suit = suit;
         this.value = value;
+    }
+
+    public String getRank() {
+        return rank;
     }
 
     public int getValue() {

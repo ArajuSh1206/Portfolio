@@ -34,4 +34,9 @@ public class Hand {
 
         return value;
     }
+
+    public void clear() {
+        cards.clear();
+    }
+    
 }
