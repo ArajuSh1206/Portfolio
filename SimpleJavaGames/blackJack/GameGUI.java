@@ -10,8 +10,9 @@ public class GameGUI extends JFrame {
     private JButton standButton;
     private JButton doubleDownButton;
     private JButton splitButton;
-    private JButton startButton; // New button for starting the game
+    private JButton startButton;
     private Game game;
+    private Player player;
 
     public GameGUI() {
         setTitle("Blackjack Game");
@@ -20,7 +21,7 @@ public class GameGUI extends JFrame {
         setLayout(new BorderLayout());
         getContentPane().setBackground(new Color(0, 122, 0)); // Dark green background
 
-        // Create text areas with better fonts and colors
+        // Create text areas
         playerArea = new JTextArea();
         dealerArea = new JTextArea();
         playerArea.setFont(new Font("Serif", Font.PLAIN, 18));
@@ -30,12 +31,12 @@ public class GameGUI extends JFrame {
         playerArea.setBorder(BorderFactory.createTitledBorder("Player's Hand"));
         dealerArea.setBorder(BorderFactory.createTitledBorder("Dealer's Hand"));
 
-        // Create buttons with a consistent style
+        // Create buttons
         hitButton = new JButton("Hit");
         standButton = new JButton("Stand");
         doubleDownButton = new JButton("Double Down");
         splitButton = new JButton("Split");
-        startButton = new JButton("Start Game"); // New button for starting the game
+        startButton = new JButton("Start Game");
 
         styleButton(hitButton);
         styleButton(standButton);
@@ -51,7 +52,7 @@ public class GameGUI extends JFrame {
         buttonPanel.add(standButton);
         buttonPanel.add(doubleDownButton);
         buttonPanel.add(splitButton);
-        buttonPanel.add(startButton); // Add start button to the panel
+        buttonPanel.add(startButton);
 
         // Create a panel for player and dealer areas
         JPanel textPanel = new JPanel();
@@ -63,69 +64,72 @@ public class GameGUI extends JFrame {
         add(textPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
 
+        // Initially create game object and button listeners
         game = new Game(this);
+        player = game.getPlayer();
 
-        // Button listeners remain the same as before
-
-        // Button listeners remain the same as before
-
-hitButton.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        game.getPlayer().hit(game.getDeck());
-        GameGUI.this.updateHands(game.getPlayer().getHand(), game.getDealer().getHand(), false);
-        if (game.getPlayer().getHand().getValue() > 21) {
-            showMessage("Player busts! Dealer wins.");
-        }
-    }
-});
-
-standButton.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        game.play(); // The game logic will handle the rest when player stands
-    }
-});
-
-doubleDownButton.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        game.getPlayer().doubleDown();
-        game.getPlayer().hit(game.getDeck());
-        GameGUI.this.updateHands(game.getPlayer().getHand(), game.getDealer().getHand(), false);
-        if (game.getPlayer().getHand().getValue() > 21) {
-            showMessage("Player busts! Dealer wins.");
-        }
-        game.play(); // Proceed with the rest of the game logic
-    }
-});
-
-splitButton.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Player player = game.getPlayer();
-        if (player.getHand().getCards().size() == 2) {
-            player.splitHand();
-            if (player.hasSplit()) {
-                updateHands(player.getHand(), game.getDealer().getHand(), false);
-                splitButton.setEnabled(false);  // Disable split button after splitting
-            } else {
-                showMessage("Cannot split: the two cards are not of the same rank or insufficient cards.");
+        hitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                player.hit(game.getDeck());
+                GameGUI.this.updateHands(player.getHand(), game.getDealer().getHand(), false);
+                if (player.getHand().getValue() > 21) {
+                    showMessage("Player busts! Dealer wins.");
+                    game.restartGame();
+                }
             }
-        } else {
-            showMessage("You can only split when you have exactly two cards.");
-        }
-    }
-});
+        });
 
+        standButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.play(); // The game logic will handle the rest when player stands
+            }
+        });
 
-        // Action listener for the Start Game button
+        doubleDownButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                player.doubleDown();
+                player.hit(game.getDeck());
+                GameGUI.this.updateHands(player.getHand(), game.getDealer().getHand(), false);
+                if (player.getHand().getValue() > 21) {
+                    showMessage("Player busts! Dealer wins.");
+                    game.restartGame();
+                }
+                game.play(); // Proceed with the rest of the game logic
+            }
+        });
+
+        standButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.playerStands();
+            }
+        });
+
+        doubleDownButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.playerDoubleDowns();
+            }
+        });
+
+        splitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                player.splitHand();
+            }
+        });
+
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 startGame(); // Call the method to start the game
             }
         });
+
+        updateButtonStates(false, false, false, false); // Initially, disable game buttons until the game starts
     }
 
     private void styleButton(JButton button) {
@@ -136,13 +140,12 @@ splitButton.addActionListener(new ActionListener() {
     }
 
     // Method to start the game
-// Method to start the game
-private void startGame() {
-    game = new Game(this); // Create a new game instance
-    game.play(); // Start the game
-    updateButtonStates(true, true, false, false); // Enable Hit and Stand buttons
-    startButton.setEnabled(false); // Disable the Start Game button once the game has started
-}
+    private void startGame() {
+        game = new Game(this); // Create a new game instance
+        game.play(); // Start the game
+        updateButtonStates(true, true, false, false); // Enable Hit and Stand buttons
+        startButton.setEnabled(false); // Disable the Start Game button once the game has started
+    }
 
     // Method to update the hands in the GUI
     public void updateHands(Hand playerHand, Hand dealerHand, boolean showAllDealerCards) {
@@ -167,7 +170,6 @@ private void startGame() {
         }
     }
 
-    // Method to enable/disable buttons
     public void updateButtonStates(boolean hit, boolean stand, boolean doubleDown, boolean split) {
         hitButton.setEnabled(hit);
         standButton.setEnabled(stand);
@@ -175,12 +177,10 @@ private void startGame() {
         splitButton.setEnabled(split);
     }
 
-    // Method to display messages
     public void showMessage(String message) {
         JOptionPane.showMessageDialog(this, message);
     }
 
-    // Main method
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
