@@ -3,12 +3,13 @@ const express = require('express');
 const http = require('http');
 const socketio = require('socket.io');
 const { generateResponse } = require('./bot');
+const path = require('path');
 
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3005;
 
 // Serve static files from the current directory
 app.use(express.static(__dirname));

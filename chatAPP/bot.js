@@ -1,15 +1,17 @@
+require('dotenv').config();
 const OpenAI = require("openai");
+const path = require('path');
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
     organization: "org-QXDOHeK2k3hb6nmcKJL0BgfK",
-    project: null, // Assuming no project-specific key is needed
+    project: "pinkChat", // Assuming no project-specific key is needed
 });
 
 async function generateResponse(prompt) {
     try {
-        const response = await openai.createCompletion({
-            model: "text-davinci-003",
+        const response = await openai.complete({
+            engine: "text-davinci-003",
             prompt: prompt,
             max_tokens: 100,
             n: 1,
