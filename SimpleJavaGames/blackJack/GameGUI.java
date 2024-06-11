@@ -102,9 +102,9 @@ public class GameGUI extends JFrame {
         button.setFocusPainted(false);
     }
     
-
-// Method to start the game
-private void startGame() {
+    // Method to start the game
+    
+    private void startGame() {
     game = new Game(this); // Create a new game instance
     player = game.getPlayer(); // Update player reference
 
