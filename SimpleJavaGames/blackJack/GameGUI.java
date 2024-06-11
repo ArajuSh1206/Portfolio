@@ -2,10 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class GameGUI extends JFrame {
-    private JTextArea playerArea;
-    private JTextArea dealerArea;
+    private JPanel playerPanel;
+    private JPanel dealerPanel;
     private JButton hitButton;
     private JButton standButton;
     private JButton doubleDownButton;
@@ -13,23 +14,22 @@ public class GameGUI extends JFrame {
     private JButton startButton;
     private Game game;
     private Player player;
+    private Player dealer;
 
     public GameGUI() {
         setTitle("Blackjack Game");
-        setSize(600, 400);
+        setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-        getContentPane().setBackground(new Color(0, 122, 0)); // Dark green background
+        getContentPane().setBackground(Color.WHITE); // White background
 
-        // Create text areas
-        playerArea = new JTextArea();
-        dealerArea = new JTextArea();
-        playerArea.setFont(new Font("Serif", Font.PLAIN, 18));
-        dealerArea.setFont(new Font("Serif", Font.PLAIN, 18));
-        playerArea.setBackground(new Color(255, 255, 200));
-        dealerArea.setBackground(new Color(255, 255, 200));
-        playerArea.setBorder(BorderFactory.createTitledBorder("Player's Hand"));
-        dealerArea.setBorder(BorderFactory.createTitledBorder("Dealer's Hand"));
+        // Create panels for player and dealer areas
+        playerPanel = new JPanel();
+        dealerPanel = new JPanel();
+        playerPanel.setBackground(Color.WHITE); // White background
+        dealerPanel.setBackground(Color.WHITE); // White background
+        add(playerPanel, BorderLayout.SOUTH);
+        add(dealerPanel, BorderLayout.NORTH);
 
         // Create buttons
         hitButton = new JButton("Hit");
@@ -46,82 +46,16 @@ public class GameGUI extends JFrame {
 
         // Create a panel for buttons
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setBackground(new Color(0, 122, 0));
+        buttonPanel.setBackground(Color.WHITE); // White background
         buttonPanel.setLayout(new FlowLayout());
         buttonPanel.add(hitButton);
         buttonPanel.add(standButton);
         buttonPanel.add(doubleDownButton);
         buttonPanel.add(splitButton);
         buttonPanel.add(startButton);
-
-        // Create a panel for player and dealer areas
-        JPanel textPanel = new JPanel();
-        textPanel.setLayout(new GridLayout(2, 1));
-        textPanel.add(new JScrollPane(dealerArea));
-        textPanel.add(new JScrollPane(playerArea));
-
-        // Add panels to the main frame
-        add(textPanel, BorderLayout.CENTER);
-        add(buttonPanel, BorderLayout.SOUTH);
+        add(buttonPanel, BorderLayout.CENTER);
 
         // Initially create game object and button listeners
-        game = new Game(this);
-        player = game.getPlayer();
-
-        hitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                player.hit(game.getDeck());
-                GameGUI.this.updateHands(player.getHand(), game.getDealer().getHand(), false);
-                if (player.getHand().getValue() > 21) {
-                    showMessage("Player busts! Dealer wins.");
-                    game.restartGame();
-                }
-            }
-        });
-
-        standButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                game.play(); // The game logic will handle the rest when player stands
-            }
-        });
-
-        doubleDownButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                player.doubleDown();
-                player.hit(game.getDeck());
-                GameGUI.this.updateHands(player.getHand(), game.getDealer().getHand(), false);
-                if (player.getHand().getValue() > 21) {
-                    showMessage("Player busts! Dealer wins.");
-                    game.restartGame();
-                }
-                game.play(); // Proceed with the rest of the game logic
-            }
-        });
-
-        standButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                game.playerStands();
-            }
-        });
-
-        doubleDownButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                game.playerDoubleDowns();
-            }
-        });
-
-        splitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                player.splitHand();
-            }
-        });
-
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -129,47 +63,123 @@ public class GameGUI extends JFrame {
             }
         });
 
+        hitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                playerHits();
+            }
+        });
+
+        standButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                playerStands();
+            }
+        });
+
+        doubleDownButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                playerDoubleDowns();
+            }
+        });
+
+        splitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                playerSplits();
+            }
+        });
+
+        updateButtonStates(false, false, false, false); //
         updateButtonStates(false, false, false, false); // Initially, disable game buttons until the game starts
     }
 
     private void styleButton(JButton button) {
         button.setFont(new Font("SansSerif", Font.BOLD, 14));
-        button.setBackground(new Color(255, 255, 255));
-        button.setForeground(new Color(0, 0, 0));
+        button.setBackground(Color.BLACK); // Black background
+        button.setForeground(Color.BLACK); // Black foreground
         button.setFocusPainted(false);
     }
+    
 
-    // Method to start the game
-    private void startGame() {
-        game = new Game(this); // Create a new game instance
-        game.play(); // Start the game
-        updateButtonStates(true, true, false, false); // Enable Hit and Stand buttons
-        startButton.setEnabled(false); // Disable the Start Game button once the game has started
+// Method to start the game
+private void startGame() {
+    game = new Game(this); // Create a new game instance
+    player = game.getPlayer(); // Update player reference
+
+    game.play(); // Start the game
+    updateButtonStates(true, true, false, player.canSplit()); // Enable Hit and Stand buttons
+    startButton.setEnabled(false); // Disable the Start Game button once the game has started
+}
+
+public void updateGUI(boolean showAllDealerCards) {
+    game.updateGUI(player.getHand(), dealer.getHand(), showAllDealerCards);
+}
+
+
+    // Method to handle player hitting
+    private void playerHits() {
+        game.playerHits();
     }
 
-    // Method to update the hands in the GUI
+    // Method to handle player standing
+    private void playerStands() {
+        game.playerStands();
+    }
+
+    // Method to handle player doubling down
+    private void playerDoubleDowns() {
+        game.playerDoubleDowns();
+    }
+
+    // Method to handle player splitting
+    private void playerSplits() {
+        player.splitHand();
+    }
+
+    // Method to update the hands in the GUI with card images
     public void updateHands(Hand playerHand, Hand dealerHand, boolean showAllDealerCards) {
-        playerArea.setText("");
-        dealerArea.setText("");
+        playerPanel.removeAll();
+        dealerPanel.removeAll();
 
-        playerArea.append("Player's Hand:\n");
-        for (Card card : playerHand.getCards()) {
-            playerArea.append(card.toString() + "\n");
-        }
-        playerArea.append("Player's Hand Value: " + playerHand.getValue() + "\n");
+        displayCards(playerHand.getCards(), playerPanel);
+        displayCards(dealerHand.getCards(), dealerPanel, showAllDealerCards);
 
-        dealerArea.append("Dealer's Hand:\n");
-        if (showAllDealerCards) {
-            for (Card card : dealerHand.getCards()) {
-                dealerArea.append(card.toString() + "\n");
-            }
-            dealerArea.append("Dealer's Hand Value: " + dealerHand.getValue() + "\n");
-        } else {
-            dealerArea.append(" <hidden card>\n");
-            dealerArea.append(dealerHand.getCards().get(1).toString() + "\n");
-        }
+        playerPanel.revalidate();
+        playerPanel.repaint();
+        dealerPanel.revalidate();
+        dealerPanel.repaint();
     }
 
+    // Method to display cards on a panel
+    private void displayCards(List<Card> cards, JPanel panel) {
+        displayCards(cards, panel, true);
+    }
+
+    private void displayCards(List<Card> cards, JPanel panel, boolean showAllCards) {
+        panel.removeAll();
+        for (int i = 0; i < cards.size(); i++) {
+            Card card = cards.get(i);
+            String fileName;
+            if (showAllCards || i == 0) {
+                fileName = "/Cards/" + card.getImageFileName() + ".png";
+            } else {
+                fileName = "/Cards/backB.png"; // Change to backR.png for red back
+            }
+            ImageIcon cardIcon = new ImageIcon(getClass().getResource(fileName));
+            // Adjust the size of the card image
+            int width = 85; // Adjust width according to your preference
+            int height = (int) (width * 1.5); // Maintain aspect ratio
+            Image scaledImage = cardIcon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+            ImageIcon scaledCardIcon = new ImageIcon(scaledImage);
+            JLabel cardLabel = new JLabel(scaledCardIcon);
+            panel.add(cardLabel);
+        }
+        panel.revalidate();
+        panel.repaint();
+    } 
+    
     public void updateButtonStates(boolean hit, boolean stand, boolean doubleDown, boolean split) {
         hitButton.setEnabled(hit);
         standButton.setEnabled(stand);

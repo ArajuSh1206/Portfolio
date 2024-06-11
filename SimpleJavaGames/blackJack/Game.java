@@ -1,4 +1,4 @@
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import java.util.List;
 
 public class Game {
@@ -39,11 +39,12 @@ public class Game {
 
         // Check for initial Blackjack
         if (player.hasBlackjack()) {
-            if (dealer.hasBlackjack()) {
-                handleGameEnd("Both have Blackjack! It's a tie!");
+            if (player.hasBlackjack() || dealer.hasBlackjack()) {
+                handleGameEnd("Initial Blackjack! No winner.");
             } else {
-                handleGameEnd("Player has Blackjack! Player wins!");
-            }
+                gui.updateHands(player.getHand(), dealer.getHand(), false);
+                gui.updateButtonStates(true, true, player.canDoubleDown(), player.canSplit());
+            }        
         } else if (dealer.hasBlackjack()) {
             handleGameEnd("Dealer has Blackjack! Dealer wins.");
         } else {
@@ -52,22 +53,51 @@ public class Game {
         }
     }
 
+        // Method to update the GUI with current hands
+    public void updateGUI(Hand playerHand, Hand dealerHand, boolean showAllDealerCards) {
+        gui.updateHands(playerHand, dealerHand, showAllDealerCards);
+    }
+
+
     private void handleGameEnd(String message) {
         gui.showMessage(message);
         restartGame();
     }
-    
 
     public void playerStands() {
-        if (player.hasHitInRound() || player.getHand().getCards().size() == 2) {
+        if (!isGameOver()) {
             dealerPlay();
-        } else {
-            gui.showMessage("You must hit at least once before standing.");
         }
     }
 
+    public void playerHits() {
+        if (!isGameOver() && player.getHand().getValue() < 21) {
+            player.hit(deck); // Player takes one card
+            gui.updateHands(player.getHand(), dealer.getHand(), false);
+            int playerValue = player.getHand().getValue();
+            if (playerValue > 21) {
+                handleGameEnd("Player busts! Dealer wins.");
+            } else if (playerValue == 21) {
+                handleGameEnd("Player has 21! Player Wins.");
+            }
+        }
+    }
+    
+    public void playerSplits() {
+        if (!isGameOver() && player.canSplit() && player.getHand().getCards().size() == 2) {
+            player.splitHand();
+            player.hit(deck); // Deal one card to each split hand
+            player.hit(deck);
+            gui.updateHands(player.getHand(), dealer.getHand(), false);
+            // Continue the game with the split hands
+            dealerPlay();
+        } else {
+            gui.showMessage("You can only split with your initial two cards and if it's not game over.");
+        }
+    }
+    
     public void playerDoubleDowns() {
-        if (player.canDoubleDown() && !player.hasHitInRound()) {
+        if (!isGameOver() && player.canDoubleDown() && !player.hasHitInRound() && player.getHand().getCards().size() == 2) {
             player.doubleDown();
             player.hit(deck); // Player takes one more card
             player.setHasHitInRound(false);
@@ -76,70 +106,33 @@ public class Game {
             if (player.getHand().getValue() > 21) {
                 handleGameEnd("Player busts! Dealer wins.");
             } else {
-                dealerPlay();
+                dealerPlay(); // Proceed with the rest of the game logic
             }
         } else {
-            gui.showMessage("You can only double down with your initial two cards.");
-        }
-    }
-
-    public void playerHits() {
-        if (!player.hasHitInRound()) { // Checking if the player has already hit in the current round
-            player.hit(deck); // Player takes one card
-            player.setHasHitInRound(true); // Mark that the player has hit in this round
-            gui.updateHands(player.getHand(), dealer.getHand(), false);
-            int playerValue = player.getHand().getValue();
-            if (playerValue > 21) {
-                handleGameEnd("Player busts! Dealer wins.");
-            } else if (playerValue == 21) {
-                handleGameEnd("Player has 21! Dealer's turn.");
-            }
-        } else {
-            gui.showMessage("You can only hit once per turn.");
+            gui.showMessage("You can only double down with your initial two cards and if you haven't hit yet.");
         }
     }
     
-
+    
     private void dealerPlay() {
-        while (dealer.wantsToHit()) {
+        // Dealer hits only once if hand value is less than 17
+        if (dealer.wantsToHit()) {
             dealer.hit(deck);
             gui.updateHands(player.getHand(), dealer.getHand(), true);
         }
-
+    
         int dealerValue = dealer.getHand().getValue();
-        if (dealerValue > 21) {
+        int playerValue = player.getHand().getValue();
+    
+        if (dealerValue > 21 || playerValue > dealerValue) {
             handleGameEnd("Dealer busts! Player wins.");
-        } else {
-            evaluateGameOutcome();
-        }
-    }
-
-    private void evaluateGameOutcome() {
-        List<Hand> playerHands = player.getAllHands();
-        int dealerValue = dealer.getHand().getValue();
-        boolean playerWins = false;
-        boolean tie = false;
-
-        for (Hand hand : playerHands) {
-            int handValue = hand.getValue();
-            if (handValue > 21) {
-                // Hand is a bust
-                continue;
-            } else if (dealerValue > 21 || handValue > dealerValue) {
-                playerWins = true;
-            } else if (handValue == dealerValue) {
-                tie = true;
-            }
-        }
-
-        if (playerWins) {
-            handleGameEnd("Player wins at least one hand.");
-        } else if (tie) {
-            handleGameEnd("At least one hand ties with dealer.");
+        } else if (playerValue == dealerValue) {
+            handleGameEnd("It's a tie!");
         } else {
             handleGameEnd("Dealer wins.");
         }
     }
+    
 
     public void restartGame() {
         int choice = JOptionPane.showConfirmDialog(null, "Do you want to play again?", "Restart Game", JOptionPane.YES_NO_OPTION);
@@ -148,5 +141,9 @@ public class Game {
         } else {
             System.exit(0);
         }
+    }
+
+    private boolean isGameOver() {
+        return player.hasBlackjack() || dealer.hasBlackjack() || player.getHand().getValue() > 21;
     }
 }
