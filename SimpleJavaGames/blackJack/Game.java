@@ -53,21 +53,9 @@ public class Game {
         }
     }
 
-        // Method to update the GUI with current hands
+    // Method to update the GUI with current hands
     public void updateGUI(Hand playerHand, Hand dealerHand, boolean showAllDealerCards) {
         gui.updateHands(playerHand, dealerHand, showAllDealerCards);
-    }
-
-
-    private void handleGameEnd(String message) {
-        gui.showMessage(message);
-        restartGame();
-    }
-
-    public void playerStands() {
-        if (!isGameOver()) {
-            dealerPlay();
-        }
     }
 
     public void playerHits() {
@@ -82,20 +70,13 @@ public class Game {
             }
         }
     }
-    
-    public void playerSplits() {
-        if (!isGameOver() && player.canSplit() && player.getHand().getCards().size() == 2) {
-            player.splitHand();
-            player.hit(deck); // Deal one card to each split hand
-            player.hit(deck);
-            gui.updateHands(player.getHand(), dealer.getHand(), false);
-            // Continue the game with the split hands
+
+    public void playerStands() {
+        if (!isGameOver()) {
             dealerPlay();
-        } else {
-            gui.showMessage("You can only split with your initial two cards and if it's not game over.");
         }
     }
-    
+
     public void playerDoubleDowns() {
         if (!isGameOver() && player.canDoubleDown() && !player.hasHitInRound() && player.getHand().getCards().size() == 2) {
             player.doubleDown();
@@ -110,6 +91,19 @@ public class Game {
             }
         } else {
             gui.showMessage("You can only double down with your initial two cards and if you haven't hit yet.");
+        }
+    }
+    
+    public void playerSplits() {
+        if (!isGameOver() && player.canSplit() && player.getHand().getCards().size() == 2) {
+            player.splitHand();
+            player.hit(deck); // Deal one card to each split hand
+            player.hit(deck);
+            gui.updateHands(player.getHand(), dealer.getHand(), false);
+            // Continue the game with the split hands
+            dealerPlay();
+        } else {
+            gui.showMessage("You can only split with your initial two cards and if it's not game over.");
         }
     }
     
@@ -145,5 +139,11 @@ public class Game {
 
     private boolean isGameOver() {
         return player.hasBlackjack() || dealer.hasBlackjack() || player.getHand().getValue() > 21;
+    }
+
+
+    private void handleGameEnd(String message) {
+        gui.showMessage(message);
+        restartGame();
     }
 }
