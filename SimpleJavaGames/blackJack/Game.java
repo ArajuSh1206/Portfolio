@@ -197,24 +197,30 @@ public class Game {
         // Disable the reset button at the beginning of the method
         gameGUI.resetGameButton.setEnabled(false);
     
+        // Return bets to player and dealer balances
+        playerBalance += playerBet; // Return player's bet to their balance
+        dealerBalance += dealerBet; // Return dealer's bet to their balance
+        playerBet = 0; // Reset player's bet to zero
+        dealerBet = 0; // Reset dealer's bet to zero
+    
+        // Clear hands
         player.clearHand();
         dealer.clearHand();
-        playerBet = 0;
-        dealerBet = 0;
     
+        // Update GUI components
         gameGUI.updateHands(player.getHand(), dealer.getHand(), false); // Show dealer's first card only
         gameGUI.updateButtonStates(true, false, false, false, false);
-    
         gameGUI.updatePlayerBalance(playerBalance);
         gameGUI.updateDealerBalance(dealerBalance);
+        gameGUI.dealerHandValueLabel.setText("Dealer Hand Value: " + dealer.getHand().getValue());
     
+        // Enable betting buttons for a new game
         for (JButton button : gameGUI.betButtons) {
-            button.setEnabled(true); // Enable betting buttons for a new game
+            button.setEnabled(true);
         }
     
         // Enable the reset button only after resetting the game state
         gameGUI.resetGameButton.setEnabled(true);
-        gameGUI.updateHands(player.getHand(), dealer.getHand(), false); // Show dealer's first card only
-        gameGUI.dealerHandValueLabel.setText("Dealer Hand Value: ?");
     }
+    
 }    

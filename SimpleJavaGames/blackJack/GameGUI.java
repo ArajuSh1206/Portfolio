@@ -265,6 +265,11 @@
           @Override
           public void actionPerformed(ActionEvent e) {
               game.resetGame();
+              currentBet = 0;
+              updateBetLabels();
+              updatePlayerBalance(playerMoney);
+              updateDealerBalance(dealerMoney);
+              updateButtonStates(false, true, true, true, true);
           }
       }
   
@@ -466,8 +471,8 @@
           SwingUtilities.invokeLater(() -> {
               new GameGUI();
           });
-        }
-    
+     }
+
   }
   
   
