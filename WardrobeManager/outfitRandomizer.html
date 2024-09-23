@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wardrobe Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Wardrobe Manager</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="addClothes.html">Add Clothes</a></li>
+            <li><a href="outfitRandomizer.html">Randomize Outfit</a></li>
+            <li><a href="/calendar">Calendar</a></li>
+            <li><a href="searchAndFilter.html">All outfits</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to Your Wardrobe Manager</h1>
+        <p>Plan, organize, and randomize your outfits for every occasion with ease.</p>
+        <a href="/add-clothes" class="cta-btn">Get Started</a>
+    </section>
+
+    <section class="randomizer">
+        <h2>Outfit Randomizer</h2>
+        
+        <!-- Filters -->
+        <div class="filters">
+          <label for="weather">Weather (in degrees):</label>
+          <input type="range" id="weather" min="30" max="100" value="65">
+          
+          <label for="event">Event:</label>
+          <select id="event">
+            <option>Casual</option>
+            <option>Night Out</option>
+            <option>Brunch</option>
+            <option>Family Event</option>
+            <option>Date</option>
+          </select>
+        </div>
+      
+        <button id="randomize-btn">Generate Outfit</button>
+        
+        <!-- Randomized outfit display -->
+        <div id="outfit-display" class="outfit-grid"></div>
+      </section>
+      
+      <script>
+        document.getElementById('randomize-btn').addEventListener('click', function() {
+          // Logic for outfit randomization based on filters
+        });
+      </script>
+      
+</body>
+<footer class="footer">
+  <p>&copy; 2024 Wardrobe Manager | <a href="/contact">Contact Us</a></p>
+  <div class="social-icons">
+      <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+      <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+      <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+  </div>
+</footer>
+</html>

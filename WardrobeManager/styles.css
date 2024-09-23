@@ -1,0 +1,261 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica', sans-serif;
+}
+
+/* Root Variables for Colors */
+:root {
+    --primary-color: #740a3f;  /* Soft pink accent */
+    --background-color: #fff;  /* White background */
+    --text-color: #333;        /* Dark gray text */
+    --button-hover-color: #ff99cc; /* Lighter pink for hover effects */
+    --accent-color: #000;      /* Black accent for contrast */
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-color);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--accent-color);
+}
+
+.navbar .logo {
+    color: var(--accent-color);
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.navbar .nav-links {
+    list-style: none;
+}
+
+.navbar .nav-links li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.navbar .nav-links a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.navbar .nav-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--accent-color);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.hero .cta-btn {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    border: none;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.hero .cta-btn:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Features Section */
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--background-color);
+}
+
+.feature-card {
+    text-align: center;
+    padding: 30px;
+    background-color: var(--background-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s;
+    flex-basis: 30%;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card img {
+    max-width: 80px;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.feature-btn {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.feature-btn:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Add Clothes Form Section */
+.add-clothes-form-section {
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: var(--background-color);
+}
+
+.add-clothes-form {
+    background-color: var(--background-color);
+    padding: 40px;
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.add-clothes-form h2 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: var(--accent-color);
+}
+
+.add-clothes-form label {
+    display: block;
+    font-size: 1rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.add-clothes-form input,
+.add-clothes-form select {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.add-clothes-form input:focus,
+.add-clothes-form select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.submit-btn {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: var(--button-hover-color);
+}
+
+.outfit-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.outfit-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #f9f9f9;
+    width: calc(33.333% - 20px); /* Responsive design */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.outfit-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+
+
+/* Footer */
+.footer {
+    background-color: var(--background-color);
+    color: var(--accent-color);
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid var(--accent-color);
+}
+
+.footer p {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: var(--primary-color);
+}
+
+.footer .social-icons img {
+    width: 30px;
+    margin: 0 10px;
+}

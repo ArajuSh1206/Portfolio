@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wardrobe Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Wardrobe Manager</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="addClothes.html">Add Clothes</a></li>
+            <li><a href="outfitRandomizer.html">Randomize Outfit</a></li>
+            <li><a href="/calendar">Calendar</a></li>
+            <li><a href="searchAndFilter.html">All outfits</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to Your Wardrobe Manager</h1>
+        <p>Plan, organize, and randomize your outfits for every occasion with ease.</p>
+        <a href="/add-clothes" class="cta-btn">Get Started</a>
+    </section>
+
+    <!-- Add Clothes Form Section -->
+    <section class="add-clothes-form-section">
+        <!-- Image Upload -->
+        <form class="add-clothes-form" enctype="multipart/form-data">
+            <h2>Add New Clothing Item</h2>
+            
+            <!-- Image Upload Field -->
+            <label for="clothing-image">Upload Clothing Image:</label>
+            <input type="file" id="clothing-image" accept="image/*" required>
+
+            <label for="clothing-name">Clothing Name:</label>
+            <input type="text" id="clothing-name" placeholder="Enter name" required>
+
+            <label for="category">Category:</label>
+            <select id="category" multiple required>
+                <option>Pants</option>
+                <option>Top</option>
+                <option>Dress</option>
+                <option>Romper</option>
+                <option>Shorts</option>
+            </select>
+
+            <label for="season">Season:</label>
+            <select id="season" multiple required>
+                <option>All</option>
+                <option>Winter</option>
+                <option>Spring</option>
+                <option>Summer</option>
+                <option>Fall</option>
+            </select>
+
+            <label for="color">Color:</label>
+            <input type="text" id="color" placeholder="Enter color" required>
+
+            <label for="event">Event:</label>
+            <select id="event" multiple required>
+                <option>Casual</option>
+                <option>Brunch</option>
+                <option>Night Out</option>
+                <option>Family Event</option>
+                <option>Date</option>
+            </select>
+
+            <button type="submit" class="submit-btn">Add Clothing</button>
+        </form>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        document.querySelector('.add-clothes-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Collect form data
+            const clothingImage = document.getElementById('clothing-image').files[0];
+            const clothingName = document.getElementById('clothing-name').value;
+            const categories = Array.from(document.getElementById('category').selectedOptions).map(option => option.value);
+            const seasons = Array.from(document.getElementById('season').selectedOptions).map(option => option.value);
+            const color = document.getElementById('color').value;
+            const events = Array.from(document.getElementById('event').selectedOptions).map(option => option.value);
+    
+            // Validate data
+            if (!clothingImage || !clothingName || categories.length === 0 || seasons.length === 0 || !color || events.length === 0) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+    
+            // Create an object for the clothing item
+            const clothingItem = {
+                name: clothingName,
+                image: URL.createObjectURL(clothingImage), // Create a URL for the uploaded image
+                categories,
+                seasons,
+                color,
+                events,
+            };
+    
+            // Store in local storage
+            const existingClothes = JSON.parse(localStorage.getItem('clothingItems')) || [];
+            existingClothes.push(clothingItem);
+            localStorage.setItem('clothingItems', JSON.stringify(existingClothes));
+    
+            // Clear form fields after submission
+            document.querySelector('.add-clothes-form').reset();
+        });
+    </script>    
+</body>
+<footer class="footer">
+    <p>&copy; 2024 Wardrobe Manager | <a href="/contact">Contact Us</a></p>
+    <div class="social-icons">
+        <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+        <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+        <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+    </div>
+</footer>
+</html>
