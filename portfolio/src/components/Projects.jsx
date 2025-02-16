@@ -1,5 +1,6 @@
 import React from 'react';
 import { PROJECTS } from "../constants";
+import { motion } from "framer-motion";
 
 const Projects = () => {
   return (
@@ -8,7 +9,11 @@ const Projects = () => {
       <div>
         {PROJECTS.map((project, index) => (
           <div key={index} className="mb-8 flex flex-wrap lg:justify-center">
-            <div className="w-full lg:w-1/4">
+            <motion.div 
+              whileInView = {{ opacity: 1, x: 0 }}
+              initial = {{ opacity: 0, x: -100 }}
+              transition = {{ duration: 0.5 }}
+              className="w-full lg:w-1/4">
               <img
                 src={project.image}
                 alt={project.title}
@@ -16,8 +21,12 @@ const Projects = () => {
                 width={150}
                 height={150}
               />
-            </div>
-            <div className="w-full max-w-xl lg:w-3/4">
+            </motion.div>
+            <motion.div 
+              whileInView = {{ opacity: 1, x: 0 }}
+              initial = {{ opacity: 0, x: 100 }}
+              transition = {{ duration: 0.5 }}
+              className="w-full max-w-xl lg:w-3/4">
               <h6 className="mb-2 font-semibold">
                 {project.title} -{" "}
                 <span className="text-sm text-pink-400">{project.company}</span>
@@ -31,7 +40,7 @@ const Projects = () => {
                   {tech}
                 </span>
               ))}
-            </div>
+            </motion.div>
           </div>
         ))}
       </div>
