@@ -9,13 +9,6 @@ export const ABOUT_TEXT = `I am a dedicated and versatile full stack developer w
 
 export const EXPERIENCES = [
   {
-    year: "2021 - 2024",
-    role: "Student",
-    company: "University of Colorado Boulder",
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-    technologies: ["Javascript", "React.js", "Next.js", "mongoDB"],
-  },
-  {
     year: "2022 - 2023",
     role: "Engineering Intern",
     company: "Tecomet",
@@ -40,18 +33,13 @@ export const EXPERIENCES = [
 
 export const PROJECTS = [
   {
-    title: "Spotify Clone",
-    image: project1,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    technologies: ["HTML", "CSS", "React", "Node.js", "MongoDB"],
-  },
-  {
     title: "GUFF Chat Application",
     image: project2,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     technologies: ["HTML", "CSS", "Angular", "Firebase"],
+    githubLink: "https://github.com/ArajuSh1206/guff-chat-app",
+    liveLink: "https://guff-chat-app.vercel.app/"
   },
   {
     title: "Portfolio Website",
@@ -59,6 +47,8 @@ export const PROJECTS = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     technologies: ["HTML", "CSS", "React", "Bootstrap"],
+    githubLink: "https://github.com/ArajuSh1206/portfolio-website",
+    liveLink: "https://araju-sharma.com"
   },
   {
     title: "Blogging Platform",
@@ -66,6 +56,8 @@ export const PROJECTS = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     technologies: ["HTML", "CSS", "Vue.js", "Express", "mySQL"],
+    githubLink: "https://github.com/ArajuSh1206/blog-platform",
+    liveLink: "https://blog-platform-demo.netlify.app"
   },
 ];
 
