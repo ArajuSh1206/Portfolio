@@ -55,7 +55,7 @@ export const EXPERIENCES = [
 export const PROJECTS = [
   {
     title: "GUFF Chat Application",
-    image: [chat1, chat2, chat3, chat5, chat4, chat7, chat6],
+    image: [chat7, chat6, chat3, chat5, chat1, chat2, chat4],
     description:
       "A real-time chat app built with the MERN stack (MongoDB, Express.js, React, Node.js) and Socket.io. Users can securely log in with JWT authentication and hashed passwords. This contains live messaging, online status updates, and smooth state management with Zustand. The app features a clean, responsive design using TailwindCSS and Daisy UI. With built-in error handling and free deployment, this project highlights my ability to create secure, interactive web apps that are both functional and user-friendly.",
     technologies: ["Express.js", "React", "Node.js", "MongoDB", "Zustand", "Cloudinary", "Tailwind", "Socket.io", "onRender"],
