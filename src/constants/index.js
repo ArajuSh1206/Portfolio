@@ -63,7 +63,7 @@ export const PROJECTS = [
     liveLink: "https://guff-chat-app.onrender.com/login"
   },
   {
-    title: "Blogging Platform",
+    title: "GUFF Blogging Platform",
     image: [blog1, blog2, blog3, blog4, blog5, blog6, blog7, blog8, blog9, blog10, blog11],
     description:
       "This Next.js 13 full-stack blogging application enables seamless authentication via Google allowing users to create and manage profiles. It features a rich text editor (Quill) for writing posts with embedded images, videos, and links. Posts can be viewed, commented on, and deleted. It also uses Prisma and MongoDB for tracking views to highlight popular content on the homepage. This project showcases my experience in authentication, database management, real-time updates, and responsive UI design.",
