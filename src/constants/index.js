@@ -1,7 +1,28 @@
-import project1 from "../assets/projects/project-1.jpg";
-import project2 from "../assets/projects/project-2.jpg";
-import project3 from "../assets/projects/project-3.jpg";
-import project4 from "../assets/projects/project-4.jpg";
+import chat1 from "../assets/projects/chatImages/chat1.png";
+import chat2 from "../assets/projects/chatImages/chat2.png";
+import chat3 from "../assets/projects/chatImages/chat3.png";
+import chat4 from "../assets/projects/chatImages/chat4.png";
+import chat5 from "../assets/projects/chatImages/chat5.png";
+import chat6 from "../assets/projects/chatImages/chat6.png";
+import chat7 from "../assets/projects/chatImages/chat7.png";
+
+import blog1 from "../assets/projects/blogImages/blog1.png"
+import blog2 from "../assets/projects/blogImages/blog2.png"
+import blog3 from "../assets/projects/blogImages/blog3.png"
+import blog4 from "../assets/projects/blogImages/blog4.png"
+import blog5 from "../assets/projects/blogImages/blog5.png"
+import blog6 from "../assets/projects/blogImages/blog6.png"
+import blog7 from "../assets/projects/blogImages/blog7.png"
+import blog8 from "../assets/projects/blogImages/blog8.png"
+import blog9 from "../assets/projects/blogImages/blog9.png"
+import blog10 from "../assets/projects/blogImages/blog10.png"
+import blog11 from "../assets/projects/blogImages/blog11.png"
+
+import portfolio1 from "../assets/projects/portfolioImages/portfolio1.png"
+import portfolio2 from "../assets/projects/portfolioImages/portfolio2.png"
+
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css"; 
 
 export const HERO_CONTENT = `I'm a passionate full stack developer focused on creating scalable and high performance projects. With 3 years of personal hands-on experience, I specialize in front-end technologies like HTML5, CSS, React, Next.js, Express.js, and TailwindCSS as well as back-end technologies such as Node.js, PostgreSQL, and MongoDB. I also have experience with Prisma, Firebase, Cloudinary, and Zustand for state management and database integration. My projects include real time features using Socket.io and dynamic UIs using Framer Motion and Daisy UI.`;
 
@@ -34,30 +55,30 @@ export const EXPERIENCES = [
 export const PROJECTS = [
   {
     title: "GUFF Chat Application",
-    image: project2,
+    image: [chat1, chat2, chat3, chat5, chat4, chat7, chat6],
     description:
       "A real-time chat app built with the MERN stack (MongoDB, Express.js, React, Node.js) and Socket.io. Users can securely log in with JWT authentication and hashed passwords. This contains live messaging, online status updates, and smooth state management with Zustand. The app features a clean, responsive design using TailwindCSS and Daisy UI. With built-in error handling and free deployment, this project highlights my ability to create secure, interactive web apps that are both functional and user-friendly.",
-    technologies: ["Express.js", "React", "Node.js", "MongoDB", "Zustand", "Cloudinary", "Tailwind", "Socket.io"],
-    githubLink: "https://github.com/ArajuSh1206/Chat-app/tree/main/chat-app",
-    liveLink: "https://guff-chat-app.vercel.app/"
+    technologies: ["Express.js", "React", "Node.js", "MongoDB", "Zustand", "Cloudinary", "Tailwind", "Socket.io", "onRender"],
+    githubLink: "https://github.com/ArajuSh1206/Chat-app",
+    liveLink: "https://guff-chat-app.onrender.com/login"
   },
   {
     title: "Blogging Platform",
-    image: project4,
+    image: [blog1, blog2, blog3, blog4, blog5, blog6, blog7, blog8, blog9, blog10, blog11],
     description:
       "This Next.js 13 full-stack blogging application enables seamless authentication via Google allowing users to create and manage profiles. It features a rich text editor (Quill) for writing posts with embedded images, videos, and links. Posts can be viewed, commented on, and deleted. It also uses Prisma and MongoDB for tracking views to highlight popular content on the homepage. This project showcases my experience in authentication, database management, real-time updates, and responsive UI design.",
-    technologies: ["Next.js", "React", "CSS", "MongoDB", "Prisma", "Firebase", "Socket.io"],
+    technologies: ["Next.js", "React", "CSS", "MongoDB", "Prisma", "Firebase", "Socket.io", "Vercel"],
     githubLink: "https://github.com/ArajuSh1206/blog-app",
-    liveLink: "https://blog-platform-demo.netlify.app"
+    liveLink: "https://blog-app-git-main-araju-sharmas-projects.vercel.app/"
   },
   {
     title: "Portfolio Website",
-    image: project3,
+    image: [portfolio1, portfolio2],
     description:
       "This React portfolio website showcases a clean, modern design with a fully responsive layout using Tailwind CSS. It includes sections for my bio, technical skills, work experience, and projects, along with a contact form. I used Framer Motion to add smooth animations, bringing elements like tech logos, job details, and project info to life. This project reflects my ability to build interactive, polished websites with a focus on user experience and seamless design.",
     technologies: ["React", "Tailwind", "Node.js", "Framer Motion"],
-    githubLink: "https://github.com/ArajuSh1206/Portfolio/tree/main/portfolio",
-    liveLink: "https://araju-sharma.com"
+    githubLink: "https://github.com/ArajuSh1206/Portfolio",
+    liveLink: "https://portfolio-git-main-araju-sharmas-projects.vercel.app/"
   },
 ];
 
