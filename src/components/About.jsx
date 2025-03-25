@@ -1,5 +1,5 @@
 import React from 'react';
-import aboutMeImg from "../assets/meArchesUT.jpeg";
+import aboutMeImg from "../assets/AS3.png";
 import { ABOUT_TEXT } from "../constants";
 import { motion } from "framer-motion";
 
