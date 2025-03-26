@@ -10,12 +10,12 @@ const About = () => {
         About <span className="text-neutral-500">Me</span>
       </h1>
       
-      <div className="flex flex-wrap items-center">
+      <div className="flex flex-wrap justify-center items-center">
         {/* Image Section */}
         <motion.div 
-          whileInView = {{ opacity: 1, x: 0 }}
-          initial = {{ opacity: 0, x: -100 }}
-          transition = {{ duration: 0.5 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: -100 }}
+          transition={{ duration: 0.5 }}
           className="w-full lg:w-1/2 lg:p-8">
           <div className="flex justify-center">
             <img
@@ -28,9 +28,9 @@ const About = () => {
         
         {/* Text Section */}
         <motion.div
-          whileInView = {{ opacity: 1, x: 0 }}
-          initial = {{ opacity: 0, x: 100 }}
-          transition = {{ duration: 0.5 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 100 }}
+          transition={{ duration: 0.5 }}
           className="my-4 max-w-xl py-6 text-lg font-light leading-relaxed tracking-tight">
           <div className="flex justify-center lg:justify-start">
             <p className="my-2 max-w-xl py-4 text-lg leading-relaxed">
