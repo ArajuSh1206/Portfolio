@@ -6,8 +6,7 @@ import { motion } from "framer-motion";
 const Navbar = () => {
   const socialLinks = [
     { icon: <FaLinkedin />, url: "https://www.linkedin.com/in/araju-sharma-15578021a/", name: "LinkedIn" },
-    { icon: <FaGithub />, url: "https://github.com/ArajuSh1206", name: "GitHub" },
-    { icon: <FaInstagram />, url: "https://www.instagram.com/siimransharma", name: "Instagram" },
+    { icon: <FaGithub />, url: "https://github.com/ArajuSh1206", name: "GitHub" }
   ];
 
   return (
