@@ -21,6 +21,14 @@ import blog11 from "../assets/projects/blogImages/blog11.png"
 import portfolio1 from "../assets/projects/portfolioImages/portfolio1.png"
 import portfolio2 from "../assets/projects/portfolioImages/portfolio2.png"
 
+import diary1 from "../assets/projects/diaryImages/diary1.png"
+import diary2 from "../assets/projects/diaryImages/diary2.png"
+import diary3 from "../assets/projects/diaryImages/diary3.png"
+import diary4 from "../assets/projects/diaryImages/diary4.png"
+import diary5 from "../assets/projects/diaryImages/diary5.png"
+import diary6 from "../assets/projects/diaryImages/diary6.png"
+
+
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css"; 
 
@@ -70,6 +78,14 @@ export const PROJECTS = [
     technologies: ["Next.js", "React", "CSS", "MongoDB", "Prisma", "Firebase", "Socket.io", "Vercel"],
     githubLink: "https://github.com/ArajuSh1206/blog-app",
     liveLink: "https://blog-app-git-main-araju-sharmas-projects.vercel.app/"
+  },
+    {
+    title: "MyDiary Application",
+    image: [diary1, diary2, diary3, diary4, diary5, diary6],
+    description:
+      "This is a simple .net application I created in order to learn how to build an application using ASP.net & C# on backend. This application has a CRUD functionality, which allows user to create, read, update and delete entries. This application also utilize docker & azure sql for database. It was created for learning purposes.",
+    technologies: ["C#", "ASP.net 9", "HTML", "CSS", "Javascript", "Azure", "Docker"],
+    githubLink: "https://github.com/ArajuSh1206/MyDiary",
   },
   {
     title: "Portfolio Website",
