@@ -162,16 +162,13 @@ const Projects = () => {
           role="dialog"
         >
           <div className="relative max-w-7xl w-full p-6 bg-white rounded-lg shadow-xl overflow-auto max-h-[105vh]">
-            <div className="absolute top-0 right-0 p-2 z-30">
-              <button
-                onClick={closeModal}
-                className="text-black"
-                aria-label="Close expanded view"
-              >
-                <FaTimes size={32} />
-              </button>
-            </div>
-
+            <button
+              onClick={closeModal}
+              className="fixed top-4 right-4 z-[100] text-white lg:text-black bg-black/50 lg:bg-transparent rounded-full p-2"
+              aria-label="Close expanded view"
+            >
+              <FaTimes size={32} />
+            </button>
             <div className="flex flex-col lg:flex-row gap-10">
               <div className="lg:w-2/3">
                 <Slider {...modalSettings}>
@@ -247,16 +244,13 @@ const Projects = () => {
           role="dialog"
         >
           <div className="relative max-w-7xl w-full p-6 bg-white rounded-lg shadow-xl overflow-auto max-h-[105vh]">
-            <div className="absolute top-0 right-0 p-2 z-30">
-              <button
-                onClick={closeModal}
-                className="text-black"
-                aria-label="Close expanded view"
-              >
-                <FaTimes size={32} />
-              </button>
-            </div>
-
+            <button
+              onClick={closeModal}
+              className="fixed top-4 right-4 z-[100] text-white lg:text-black bg-black/50 lg:bg-transparent rounded-full p-2"
+              aria-label="Close expanded view"
+            >
+              <FaTimes size={32} />
+            </button>
             <div className="flex flex-col lg:flex-row gap-10">
               <div className="lg:w-2/3">
                 <Slider {...modalSettings}>
