@@ -53,7 +53,7 @@ const Projects = () => {
   };
 
   return (
-    <div className="border-b border-neutral-900 pb-4">
+    <div className="border-b border-neutral-900 pb-20">
       {/* Featured Projects Section */}
       <h1 className="my-20 text-center text-4xl">Projects</h1>
       <div className="flex flex-col gap-y-16 lg:gap-y-24">
@@ -77,7 +77,7 @@ const Projects = () => {
               <img
                 src={project.image[0]}
                 alt={`${project.title} preview`}
-                className = "mb-6 rounded cursor-pointer max-h-48 w-auto object-contain mx-auto"
+                className = "mb-6 rounded cursor-pointer max-h-96 w-auto object-contain mx-auto"
               />
             </motion.div>
 
@@ -146,7 +146,7 @@ const Projects = () => {
               <img
                 src={project.image[0]}
                 alt={`${project.title} preview`}
-                className="rounded shadow-md object-contain max-h-78 mx-auto"
+                className="rounded shadow-md object-contain max-h-48 mx-auto "
               />
               <h3 className="mt-3 text-center text-lg font-semibold text-neutral-400">{project.title}</h3>
             </div>
@@ -161,7 +161,7 @@ const Projects = () => {
           aria-modal="true"
           role="dialog"
         >
-          <div className="relative max-w-5xl w-full p-6 bg-white rounded-lg shadow-xl overflow-auto max-h-[95vh]">
+          <div className="relative max-w-7xl w-full p-6 bg-white rounded-lg shadow-xl overflow-auto max-h-[105vh]">
             <div className="absolute top-0 right-0 p-2 z-30">
               <button
                 onClick={closeModal}
@@ -246,7 +246,7 @@ const Projects = () => {
           aria-modal="true"
           role="dialog"
         >
-          <div className="relative max-w-5xl w-full p-6 bg-white rounded-lg shadow-xl overflow-auto max-h-[95vh]">
+          <div className="relative max-w-7xl w-full p-6 bg-white rounded-lg shadow-xl overflow-auto max-h-[105vh]">
             <div className="absolute top-0 right-0 p-2 z-30">
               <button
                 onClick={closeModal}
