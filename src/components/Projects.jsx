@@ -34,11 +34,11 @@ const Projects = () => {
   // Separate featured and other projects
   const featuredProjects = PROJECTS.filter(
     (p) =>
-      p.title === "GUFF Chat Application" || p.title === "GUFF Blogging Platform"
+      p.title === "Touch Some Grass" || p.title === "GUFF Chat Application" || p.title === "GUFF Blogging Platform"
   );
   const otherProjects = PROJECTS.filter(
     (p) =>
-      p.title !== "GUFF Chat Application" && p.title !== "GUFF Blogging Platform"
+      p.title !== "Touch Some Grass" && p.title !== "GUFF Chat Application" && p.title !== "GUFF Blogging Platform"
   );
 
   // Open modal
@@ -77,9 +77,7 @@ const Projects = () => {
               <img
                 src={project.image[0]}
                 alt={`${project.title} preview`}
-                className="mb-6 rounded cursor-pointer"
-                width={400}
-                height={400}
+                className = "mb-6 rounded cursor-pointer max-h-48 w-auto object-contain mx-auto"
               />
             </motion.div>
 
@@ -148,7 +146,7 @@ const Projects = () => {
               <img
                 src={project.image[0]}
                 alt={`${project.title} preview`}
-                className="rounded shadow-md object-contain max-h-48 mx-auto"
+                className="rounded shadow-md object-contain max-h-78 mx-auto"
               />
               <h3 className="mt-3 text-center text-lg font-semibold text-neutral-400">{project.title}</h3>
             </div>

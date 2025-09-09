@@ -1,3 +1,12 @@
+import grass1 from "../assets/projects/touchsomegrass/g1.png";
+import grass2 from "../assets/projects/touchsomegrass/g2.png";
+import grass3 from "../assets/projects/touchsomegrass/g3.png";
+import Nograss1 from "../assets/projects/touchsomegrass/ng1.png";
+import Nograss2 from "../assets/projects/touchsomegrass/ng2.png";
+import Nograss3 from "../assets/projects/touchsomegrass/ng3.png";
+import Nograss4 from "../assets/projects/touchsomegrass/ng4.png";
+import Nograss5 from "../assets/projects/touchsomegrass/ng5.png";
+
 import chat1 from "../assets/projects/chatImages/chat1.png";
 import chat2 from "../assets/projects/chatImages/chat2.png";
 import chat3 from "../assets/projects/chatImages/chat3.png";
@@ -61,6 +70,15 @@ export const EXPERIENCES = [
 ];
 
 export const PROJECTS = [
+    {
+    title: "Touch Some Grass",
+    image: [Nograss5, grass1, Nograss1, grass2, Nograss2, grass3, Nograss4, Nograss3],
+    description:
+      "Grass Classifier is a real-time image classification web app that uses a webcam to detect whether grass is present in the camera feed. The app combines a TensorFlow/Keras deep learning model with a Flask backend and an interactive frontend to deliver predictions instantly. It features a modern UI with TailwindCSS and animated bubble effects for visual flair.",
+    technologies: ["Tensorflow", "Flask", "Javascript", "Tainwind", "Gunicorn", "Render"],
+    githubLink: "https://github.com/ArajuSh1206/Touch-some-grass",
+    liveLink: "https://touch-some-grass.vercel.app/"
+  },
   {
     title: "GUFF Chat Application",
     image: [chat7, chat6, chat3, chat5, chat1, chat2, chat4],
@@ -95,7 +113,7 @@ export const PROJECTS = [
     technologies: ["React", "Tailwind", "Node.js", "Framer Motion"],
     githubLink: "https://github.com/ArajuSh1206/Portfolio",
     liveLink: "https://portfolio-git-main-araju-sharmas-projects.vercel.app/"
-  },
+  }
 ];
 
 export const CONTACT = {
